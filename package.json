@@ -9,8 +9,9 @@
     "preview": "vite preview",
     "frontend": "vite",
     "server": "json-server --watch db.json --port 3001",
-    "dev": "concurrently \"npm run server\" \"npm run frontend\"",
-    "test": "jest"
+    "dev": "concurrently \"npm run server\" \"npm run css\"  \"npm run frontend\"",
+    "test": "jest",
+    "css": "npx tailwindcss -i ./src/styles/main.css -o ./dist/styles/main.css --watch"
   },
   "dependencies": {
     "@tanstack/react-query": "^4.29.5",
@@ -32,6 +33,7 @@
     "json-server": "^0.17.3",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
+    "tailwindcss": "^3.3.2",
     "vite": "^4.3.2"
   }
 }

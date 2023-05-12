@@ -11,7 +11,7 @@ export const RewardsProgram = () => {
   if (isLoading) return <div>Loading...</div>;
 
   return (
-    <div>
+    <div className="flex flex-col gap-8 items-center">
       {Object.keys(rewardProgramData)?.map((clientId) => {
         const user = rewardProgramData[clientId];
 
