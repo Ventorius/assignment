@@ -1,13 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { getTransactions } from '../api/transactions.js';
-import { calculateRewardPoints, splitDataByMonth } from '../utils/calculateRewardPoints.js';
+import { calculateRewardPoints, splitDataByUser } from '../utils/calculateRewardPoints.js';
 
 export const RewardsProgram = () => {
   const { data } = useQuery({ queryKey: ['transactions'], queryFn: getTransactions });
 
-  const totalPoints = calculateRewardPoints(data);
+  const res = splitDataByUser(data);
 
-  const res = splitDataByMonth(data);
+  console.log(res);
 
   if (data) {
     const perMonthPoints = Object.keys(res).map((key) => {
@@ -18,5 +18,5 @@ export const RewardsProgram = () => {
     console.log(perMonthPoints);
   }
 
-  return <div>{totalPoints}</div>;
+  return <div>test</div>;
 };

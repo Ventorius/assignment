@@ -1,4 +1,4 @@
-import { splitDataByMonth, calculateRewardPoints } from './calculateRewardPoints.js';
+import { splitDataByMonth, calculateRewardPoints, splitDataByUser } from './calculateRewardPoints.js';
 
 describe('splitDataByMonth', () => {
   test('split for one month', () => {
@@ -128,6 +128,64 @@ describe('splitDataByMonth', () => {
           id: 3,
           date: '2023-05-15',
           amount: 63.82,
+        },
+      ],
+    });
+  });
+});
+
+describe('splitDataByUser', () => {
+  test('split for two users', () => {
+    const input = [
+      {
+        id: 1,
+        date: '2023-03-01',
+        amount: 178.25,
+        clientName: 'John',
+        clientId: 1,
+      },
+      {
+        id: 2,
+        date: '2023-03-05',
+        amount: 442.11,
+        clientName: 'Mary',
+        clientId: 2,
+      },
+      {
+        id: 3,
+        date: '2023-03-15',
+        amount: 63.82,
+        clientName: 'John',
+        clientId: 1,
+      },
+    ];
+
+    const expected = splitDataByUser(input);
+
+    expect(expected).toEqual({
+      1: [
+        {
+          id: 1,
+          date: '2023-03-01',
+          amount: 178.25,
+          clientName: 'John',
+          clientId: 1,
+        },
+        {
+          id: 3,
+          date: '2023-03-15',
+          amount: 63.82,
+          clientName: 'John',
+          clientId: 1,
+        },
+      ],
+      2: [
+        {
+          id: 2,
+          date: '2023-03-05',
+          amount: 442.11,
+          clientName: 'Mary',
+          clientId: 2,
         },
       ],
     });

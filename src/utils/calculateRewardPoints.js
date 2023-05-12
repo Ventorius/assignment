@@ -13,6 +13,21 @@ const monthNames = [
   'December',
 ];
 
+export const splitDataByUser = (transactions) => {
+  const res = transactions?.reduce((acc, transaction) => {
+    const key = transaction.clientId;
+
+    if (!acc[key]) {
+      acc[key] = [];
+    }
+    acc[key].push(transaction);
+
+    return acc;
+  }, {});
+
+  return res;
+};
+
 export const splitDataByMonth = (transactions) => {
   const res = transactions?.reduce((acc, transaction) => {
     const date = new Date(transaction.date);
@@ -23,7 +38,6 @@ export const splitDataByMonth = (transactions) => {
     if (!acc[key]) {
       acc[key] = [];
     }
-
     acc[key].push(transaction);
 
     return acc;
