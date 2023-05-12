@@ -14,7 +14,7 @@ export const useRewardProgramData = (data) => {
       return acc2;
     }, {});
 
-    acc[key] = { total, pointsPerMonth };
+    acc[key] = { total, pointsPerMonth, clientName: res[key][0].clientName, clientId: res[key][0].clientId };
 
     return acc;
   }, {});
